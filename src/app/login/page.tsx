@@ -61,22 +61,16 @@ export default function LoginPage() {
       </div>
 
       {/* Auth Form Side / Right Side */}
-      <div className="flex flex-col items-center justify-start pt-24 pb-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-white">
+      <div className="flex flex-col items-center justify-center pt-16 pb-12 px-4 sm:px-6 lg:px-8 bg-slate-50 relative overflow-hidden h-screen overflow-y-auto">
         
-        {/* Interactive Globe Background (Bottom) */}
-        <div className="absolute bottom-0 inset-x-0 opacity-100 z-0 pointer-events-auto flex items-center justify-center translate-y-1/3">
-          <div className="w-[120%] max-w-[800px] aspect-square">
-            <Globe />
-          </div>
-        </div>
-
-        <div className="w-full max-w-md space-y-8 z-10 relative mb-20">
+        {/* The Form */}
+        <div className="w-full max-w-md space-y-8 z-10 relative mb-12">
           <div className="text-center lg:hidden">
             <HeartPulse className="h-12 w-12 text-primary mx-auto mb-4" />
             <h2 className="text-3xl font-bold text-slate-900 tracking-tight">AidBridge</h2>
           </div>
 
-          <Card className="glass-panel border-white/40 shadow-2xl relative overflow-visible mt-8 lg:mt-0 bg-white/60 backdrop-blur-xl">
+          <Card className="glass-panel border-white/40 shadow-2xl relative overflow-visible mt-8 lg:mt-0 bg-white/80 backdrop-blur-xl">
             
             <CardHeader className="space-y-1 pb-6">
               <CardTitle className="text-2xl font-bold text-center">
@@ -148,6 +142,12 @@ export default function LoginPage() {
             </CardFooter>
           </Card>
         </div>
+        
+        {/* Interactive Neon Globe (Bottom) */}
+        <div className="w-full max-w-[400px] aspect-square flex items-center justify-center pointer-events-auto z-10 opacity-90 drop-shadow-[0_0_20px_rgba(0,100,255,0.2)]">
+          <Globe />
+        </div>
+        
       </div>
     </div>
   )
