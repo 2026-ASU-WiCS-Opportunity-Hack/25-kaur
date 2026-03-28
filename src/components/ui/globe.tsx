@@ -23,13 +23,13 @@ export function Globe({ className }: { className?: string }) {
       height: width * 2,
       phi: 0,
       theta: 0.3,
-      dark: 1, // Solid black globe inside to let neon lines pop
+      dark: 0, // MUST BE 0 on a white background, otherwise additive blending makes colors vanish!
       diffuse: 1.2,
       mapSamples: 16000,
       mapBrightness: 6,
-      baseColor: [0.1, 0.3, 1], // Neon blue wireframes
-      markerColor: [0.1, 1, 0.3], // Neon green markers
-      glowColor: [0, 0.4, 1], // Blue glow around the globe
+      baseColor: [0, 0.3, 1], // Deep vibrant blue dots
+      markerColor: [0, 1, 0.3], // Neon green markers
+      glowColor: [1, 1, 1], // White ambient space around the globe
       markers: [
         { location: [37.7595, -122.4367], size: 0.05 }, // SF
         { location: [40.7128, -74.0060], size: 0.05 }, // NY
