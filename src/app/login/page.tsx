@@ -61,22 +61,22 @@ export default function LoginPage() {
       </div>
 
       {/* Auth Form Side / Right Side */}
-      <div className="flex flex-col items-center justify-center pt-16 pb-12 px-4 sm:px-6 lg:px-8 bg-slate-50 relative overflow-hidden h-screen overflow-y-auto">
+      <div className="flex flex-col items-center justify-center pt-16 pb-12 px-4 sm:px-6 lg:px-8 bg-slate-950 relative overflow-hidden h-screen overflow-y-auto">
         
         {/* The Form */}
         <div className="w-full max-w-md space-y-8 z-10 relative mb-12">
           <div className="text-center lg:hidden">
             <HeartPulse className="h-12 w-12 text-primary mx-auto mb-4" />
-            <h2 className="text-3xl font-bold text-slate-900 tracking-tight">AidBridge</h2>
+            <h2 className="text-3xl font-bold text-white tracking-tight">AidBridge</h2>
           </div>
 
-          <Card className="glass-panel border-white/40 shadow-2xl relative overflow-visible mt-8 lg:mt-0 bg-white/80 backdrop-blur-xl">
+          <Card className="glass-panel border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.5)] relative overflow-visible mt-8 lg:mt-0 bg-white/10 backdrop-blur-3xl text-white">
             
             <CardHeader className="space-y-1 pb-6">
-              <CardTitle className="text-2xl font-bold text-center">
+              <CardTitle className="text-2xl font-bold text-center text-white">
                 {mode === "login" ? "Welcome back" : "Create an account"}
               </CardTitle>
-              <CardDescription className="text-center">
+              <CardDescription className="text-center text-slate-300">
                 Access your case management portal
               </CardDescription>
             </CardHeader>
@@ -85,11 +85,11 @@ export default function LoginPage() {
                 
                 {/* Role Switcher */}
                 <Tabs defaultValue="client" className="w-full" onValueChange={(v) => setRole(v as any)}>
-                  <TabsList className="grid w-full grid-cols-2 mb-6">
-                    <TabsTrigger value="client" className="gap-2">
+                  <TabsList className="grid w-full grid-cols-2 mb-6 bg-slate-800 text-slate-300">
+                    <TabsTrigger value="client" className="gap-2 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
                       <UserCircle2 className="h-4 w-4" /> Client
                     </TabsTrigger>
-                    <TabsTrigger value="staff" className="gap-2">
+                    <TabsTrigger value="staff" className="gap-2 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
                       <Briefcase className="h-4 w-4" /> Staff / Admin
                     </TabsTrigger>
                   </TabsList>
@@ -128,8 +128,8 @@ export default function LoginPage() {
                 </Button>
               </form>
             </CardContent>
-            <CardFooter className="flex flex-col border-t px-6 py-4 bg-slate-50/50">
-              <p className="text-sm text-center text-muted-foreground mt-2">
+            <CardFooter className="flex flex-col border-t border-white/10 px-6 py-4 bg-slate-900/50 rounded-b-xl">
+              <p className="text-sm text-center text-slate-300 mt-2">
                 {mode === "login" ? "Don't have an account?" : "Already have an account?"}{" "}
                 <button 
                   type="button" 
@@ -144,7 +144,7 @@ export default function LoginPage() {
         </div>
         
         {/* Interactive Neon Globe (Bottom) */}
-        <div className="w-full max-w-[400px] aspect-square flex items-center justify-center pointer-events-auto z-10 opacity-90 drop-shadow-[0_0_20px_rgba(0,100,255,0.2)]">
+        <div className="w-full max-w-[400px] aspect-square flex items-center justify-center pointer-events-auto z-10 opacity-100 mix-blend-screen drop-shadow-[0_0_20px_rgba(0,100,255,0.4)]">
           <Globe />
         </div>
         
