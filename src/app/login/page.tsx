@@ -48,7 +48,7 @@ export default function LoginPage() {
               layout="fill"
               objectFit="cover"
               priority
-              className="z-0 opacity-90 scale-[1.25] -translate-y-[8%]"
+              className="z-0 opacity-90"
            />
         </div>
         <div className="z-20 p-12 mt-auto text-left w-full glass-panel border border-white/20 m-8 rounded-2xl max-w-xl self-start mb-16 shadow-2xl">
@@ -61,16 +61,16 @@ export default function LoginPage() {
       </div>
 
       {/* Auth Form Side / Right Side */}
-      <div className="flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-white">
+      <div className="flex flex-col items-center justify-start pt-24 pb-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-white">
         
-        {/* Interactive Globe Background */}
-        <div className="absolute inset-x-0 inset-y-0 opacity-40 z-0 pointer-events-auto flex items-center justify-center -translate-y-20 lg:-translate-y-0">
-          <div className="w-[150%] max-w-[800px] aspect-square">
+        {/* Interactive Globe Background (Bottom) */}
+        <div className="absolute bottom-0 inset-x-0 opacity-60 z-0 pointer-events-auto flex items-center justify-center translate-y-1/3">
+          <div className="w-[120%] max-w-[800px] aspect-square">
             <Globe />
           </div>
         </div>
 
-        <div className="w-full max-w-md space-y-8 z-10 relative">
+        <div className="w-full max-w-md space-y-8 z-10 relative mb-20">
           <div className="text-center lg:hidden">
             <HeartPulse className="h-12 w-12 text-primary mx-auto mb-4" />
             <h2 className="text-3xl font-bold text-slate-900 tracking-tight">AidBridge</h2>
