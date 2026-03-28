@@ -26,10 +26,10 @@ export function Globe({ className }: { className?: string }) {
       dark: 0, // 0 for light appearance
       diffuse: 1.2,
       mapSamples: 16000,
-      mapBrightness: 2,
-      baseColor: [0.95, 0.95, 0.95],
-      markerColor: [0.1, 0.8, 0.3], // Emerald green markers
-      glowColor: [1, 1, 1], // White glow
+      mapBrightness: 4,
+      baseColor: [0.1, 0.25, 0.15], // Dark green wireframes so it shows on white bg
+      markerColor: [0.1, 0.9, 0.3], // Bright emerald green markers
+      glowColor: [0.1, 0.8, 0.3], // Emerald glow around the globe
       markers: [
         { location: [37.7595, -122.4367], size: 0.05 }, // SF
         { location: [40.7128, -74.0060], size: 0.05 }, // NY

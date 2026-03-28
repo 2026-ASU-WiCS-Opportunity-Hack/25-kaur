@@ -43,7 +43,7 @@ export default function LoginPage() {
         <div className="absolute inset-0 bg-gradient-to-tr from-primary/30 to-black z-10 opacity-60" />
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
            <Image
-              src="/hero-3d.png"
+              src="/hero-3d.png?v=3"
               alt="3D Glowing Hands holding a Medical Cross"
               layout="fill"
               objectFit="cover"
@@ -64,7 +64,7 @@ export default function LoginPage() {
       <div className="flex flex-col items-center justify-start pt-24 pb-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-white">
         
         {/* Interactive Globe Background (Bottom) */}
-        <div className="absolute bottom-0 inset-x-0 opacity-60 z-0 pointer-events-auto flex items-center justify-center translate-y-1/3">
+        <div className="absolute bottom-0 inset-x-0 opacity-100 z-0 pointer-events-auto flex items-center justify-center translate-y-1/3">
           <div className="w-[120%] max-w-[800px] aspect-square">
             <Globe />
           </div>
