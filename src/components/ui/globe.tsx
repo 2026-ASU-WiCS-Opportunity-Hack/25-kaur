@@ -19,13 +19,13 @@ export function Globe({ className }: { className?: string }) {
       height: 1000,
       phi: 0,
       theta: 0.3,
-      dark: 1, // Dark background blending
+      dark: 0, // MUST BE 0 on a white background
       diffuse: 1.2,
       mapSamples: 16000,
-      mapBrightness: 6, // High brightness for neon overlay
-      baseColor: [0.1, 0.4, 1], // Deep vibrant blue layout
-      markerColor: [0.1, 1, 0.3], // Neon green markers
-      glowColor: [0.1, 0.4, 1], // Blue atmospheric glow
+      mapBrightness: 6,
+      baseColor: [0.1, 0.4, 0.2], // Solid dark green surface so it stands out strongly on white
+      markerColor: [0.1, 0.9, 0.3], // Vibrant emerald green markers
+      glowColor: [1, 1, 1], // Pure white glow (subtractive on white bg)
       markers: [
         { location: [37.7595, -122.4367], size: 0.05 }, // SF
         { location: [40.7128, -74.0060], size: 0.05 }, // NY
