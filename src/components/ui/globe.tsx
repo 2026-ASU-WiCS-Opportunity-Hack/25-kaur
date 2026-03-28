@@ -11,25 +11,21 @@ export function Globe({ className }: { className?: string }) {
   
   useEffect(() => {
     let phi = 0
-    let width = 0
-    const onResize = () => canvasRef.current && (width = canvasRef.current.offsetWidth)
-    window.addEventListener('resize', onResize)
-    onResize()
 
     if (!canvasRef.current) return
     const globe = createGlobe(canvasRef.current, {
       devicePixelRatio: 2,
-      width: width * 2,
-      height: width * 2,
+      width: 1000, // Fixed internal resolution, CSS handles responsive scaling!
+      height: 1000,
       phi: 0,
       theta: 0.3,
-      dark: 0, // MUST BE 0 on a white background, otherwise additive blending makes colors vanish!
+      dark: 0, // MUST BE 0 on a white background
       diffuse: 1.2,
       mapSamples: 16000,
       mapBrightness: 6,
-      baseColor: [0, 0.3, 1], // Deep vibrant blue dots
-      markerColor: [0, 1, 0.3], // Neon green markers
-      glowColor: [1, 1, 1], // White ambient space around the globe
+      baseColor: [0.1, 0.4, 0.2], // Solid dark green surface so it stands out strongly on white
+      markerColor: [0.1, 0.9, 0.3], // Vibrant emerald green markers
+      glowColor: [1, 1, 1], // Pure white glow (subtractive on white bg)
       markers: [
         { location: [37.7595, -122.4367], size: 0.05 }, // SF
         { location: [40.7128, -74.0060], size: 0.05 }, // NY
@@ -44,19 +40,18 @@ export function Globe({ className }: { className?: string }) {
           phi += 0.003
         }
         state.phi = phi + pointerInteractionMovement.current
-        state.width = width * 2
-        state.height = width * 2
+        state.width = 1000
+        state.height = 1000
       }
     } as any)
 
     return () => {
       globe.destroy()
-      window.removeEventListener('resize', onResize)
     }
   }, [])
 
   return (
-    <div className={cn("relative w-full aspect-square flex items-center justify-center", className)}>
+    <div className={cn("relative w-full max-w-[500px] aspect-square flex items-center justify-center mx-auto", className)}>
       <canvas
         ref={canvasRef}
         onPointerDown={(e) => {
