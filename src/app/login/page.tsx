@@ -9,6 +9,7 @@ import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { HeartPulse, UserCircle2, Briefcase } from "lucide-react"
+import { Globe } from "@/components/ui/globe"
 
 export default function LoginPage() {
   const router = useRouter()
@@ -40,18 +41,18 @@ export default function LoginPage() {
       {/* Visual / 3D Asset Side */}
       <div className="hidden lg:flex flex-col justify-center items-center bg-zinc-900 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-tr from-primary/30 to-black z-10 opacity-60" />
-        <div className="absolute inset-0 flex items-center justify-center p-12">
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
            <Image
               src="/hero-3d.png"
               alt="3D Glowing Hands holding a Medical Cross"
               layout="fill"
               objectFit="cover"
               priority
-              className="z-0 opacity-85"
+              className="z-0 opacity-90 scale-[1.25] -translate-y-[8%]"
            />
         </div>
-        <div className="z-20 p-12 mt-auto text-left w-full glass-panel border-0 border-t border-white/10 m-8 rounded-2xl max-w-xl self-start mb-12">
-          <HeartPulse className="h-10 w-10 text-primary mb-4" />
+        <div className="z-20 p-12 mt-auto text-left w-full glass-panel border border-white/20 m-8 rounded-2xl max-w-xl self-start mb-16 shadow-2xl">
+          <HeartPulse className="h-10 w-10 text-primary mb-4 drop-shadow-md" />
           <h2 className="text-3xl font-bold text-white tracking-tight">Welcome to AidBridge</h2>
           <p className="mt-4 text-gray-300 text-lg">
             Empowering nonprofits to deliver continuous care through AI-assisted case management and seamless client handoffs.
@@ -59,16 +60,23 @@ export default function LoginPage() {
         </div>
       </div>
 
-      {/* Auth Form Side */}
-      <div className="flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-        <div className="w-full max-w-md space-y-8">
+      {/* Auth Form Side / Right Side */}
+      <div className="flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-white">
+        
+        {/* Interactive Globe Background */}
+        <div className="absolute inset-x-0 inset-y-0 opacity-40 z-0 pointer-events-auto flex items-center justify-center -translate-y-20 lg:-translate-y-0">
+          <div className="w-[150%] max-w-[800px] aspect-square">
+            <Globe />
+          </div>
+        </div>
+
+        <div className="w-full max-w-md space-y-8 z-10 relative">
           <div className="text-center lg:hidden">
             <HeartPulse className="h-12 w-12 text-primary mx-auto mb-4" />
             <h2 className="text-3xl font-bold text-slate-900 tracking-tight">AidBridge</h2>
           </div>
 
-          <Card className="border-0 shadow-xl glass-panel relative overflow-visible mt-8 lg:mt-0">
-            <div className="absolute -top-3 -right-3 h-24 w-24 bg-primary/10 rounded-full blur-2xl -z-10" />
+          <Card className="glass-panel border-white/40 shadow-2xl relative overflow-visible mt-8 lg:mt-0 bg-white/60 backdrop-blur-xl">
             
             <CardHeader className="space-y-1 pb-6">
               <CardTitle className="text-2xl font-bold text-center">
