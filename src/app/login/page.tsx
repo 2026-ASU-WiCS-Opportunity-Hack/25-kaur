@@ -61,9 +61,9 @@ export default function LoginPage() {
               className="z-0 opacity-90"
            />
         </div>
-        <div className="z-20 p-12 mt-auto text-left w-full glass-panel border border-white/20 m-8 rounded-2xl max-w-xl self-start mb-16 shadow-2xl">
-          <h2 className="text-3xl font-bold text-white tracking-tight">Welcome to AidBridge</h2>
-          <p className="mt-4 text-gray-200 text-lg">
+        <div className="z-20 p-12 mt-auto text-left w-full glass-panel border border-black/10 m-8 rounded-2xl max-w-xl self-start mb-16 shadow-2xl bg-white/40 backdrop-blur-md">
+          <h2 className="text-3xl font-bold text-black tracking-tight">Welcome to AidBridge</h2>
+          <p className="mt-4 text-gray-900 text-lg font-medium">
             Empowering nonprofits to deliver continuous care through AI-assisted case management and seamless client handoffs.
           </p>
         </div>
