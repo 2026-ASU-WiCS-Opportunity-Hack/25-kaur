@@ -9,12 +9,10 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
   const router = useRouter()
 
   useEffect(() => {
-    // Basic Mock RBAC
+    // Basic Auth Check
     const role = localStorage.getItem("userRole")
     if (!role) {
       router.push("/login")
-    } else if (role === "client") {
-      router.push("/client-portal")
     }
   }, [router])
 

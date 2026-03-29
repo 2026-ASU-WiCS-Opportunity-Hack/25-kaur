@@ -7,13 +7,11 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { UserCircle2, Briefcase, HeartPulse } from "lucide-react"
 
 export default function LoginPage() {
   const router = useRouter()
   const [isLoading, setIsLoading] = useState(false)
-  const [role, setRole] = useState<"client" | "staff">("client")
   const [mode, setMode] = useState<"login" | "signup">("login")
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -22,15 +20,9 @@ export default function LoginPage() {
     
     // Simulate API delay
     setTimeout(() => {
-      // Set the mock session role in localStorage to emulate RBAC
-      localStorage.setItem("userRole", role)
-      
-      // Redirect based on role
-      if (role === "client") {
-        router.push("/client-portal")
-      } else {
-        router.push("/dashboard")
-      }
+      // Mock session directly to the dashboard
+      localStorage.setItem("userRole", "staff")
+      router.push("/dashboard")
     }, 1200)
   }
 
@@ -73,7 +65,7 @@ export default function LoginPage() {
       <div className="flex flex-col items-center justify-between pt-16 pb-8 px-4 sm:px-6 lg:px-8 bg-slate-50 relative overflow-hidden h-screen overflow-y-auto w-full">
         
         {/* The Form */}
-        <div className="w-full max-w-md space-y-8 z-10 relative mt-4">
+        <div className="w-full max-w-lg space-y-8 z-10 relative mt-4">
           <div className="text-center lg:hidden">
             <HeartPulse className="h-12 w-12 text-primary mx-auto mb-4" />
             <h2 className="text-3xl font-bold text-slate-900 tracking-tight">AidBridge</h2>
@@ -92,18 +84,6 @@ export default function LoginPage() {
             <CardContent>
               <form onSubmit={handleSubmit} className="space-y-6">
                 
-                {/* Role Switcher */}
-                <Tabs defaultValue="client" className="w-full" onValueChange={(v) => setRole(v as any)}>
-                  <TabsList className="grid w-full grid-cols-2 mb-6">
-                    <TabsTrigger value="client" className="gap-2">
-                      <UserCircle2 className="h-4 w-4" /> Client
-                    </TabsTrigger>
-                    <TabsTrigger value="staff" className="gap-2">
-                      <Briefcase className="h-4 w-4" /> Staff / Admin
-                    </TabsTrigger>
-                  </TabsList>
-                </Tabs>
-
                 <div className="space-y-4">
                   {mode === "signup" && (
                     <div className="space-y-2">
@@ -132,7 +112,7 @@ export default function LoginPage() {
                   {isLoading 
                     ? "Authenticating..." 
                     : mode === "login" 
-                        ? `Sign in as ${role === 'client' ? 'Client' : 'Staff'}` 
+                        ? "Sign in" 
                         : "Create Account"}
                 </Button>
               </form>
