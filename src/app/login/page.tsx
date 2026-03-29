@@ -70,10 +70,10 @@ export default function LoginPage() {
       </div>
 
       {/* Auth Form Side / Right Side */}
-      <div className="flex flex-col items-center justify-center pt-16 pb-12 px-4 sm:px-6 lg:px-8 bg-slate-50 relative overflow-hidden h-screen overflow-y-auto">
+      <div className="flex flex-col items-center justify-between pt-16 pb-8 px-4 sm:px-6 lg:px-8 bg-slate-50 relative overflow-hidden h-screen overflow-y-auto w-full">
         
         {/* The Form */}
-        <div className="w-full max-w-md space-y-8 z-10 relative mb-12">
+        <div className="w-full max-w-md space-y-8 z-10 relative mt-4">
           <div className="text-center lg:hidden">
             <HeartPulse className="h-12 w-12 text-primary mx-auto mb-4" />
             <h2 className="text-3xl font-bold text-slate-900 tracking-tight">AidBridge</h2>
@@ -151,6 +151,19 @@ export default function LoginPage() {
             </CardFooter>
           </Card>
         </div>
+
+        {/* Bridge Logo (Bottom) */}
+        <div className="w-full max-w-[220px] mx-auto mt-8 opacity-90 drop-shadow-sm flex-shrink-0">
+          <Image
+            src="/bridge-logo.png"
+            alt="AidBridge Logo Illustration"
+            width={400}
+            height={300}
+            className="w-full h-auto object-contain mix-blend-multiply"
+            priority
+          />
+        </div>
+
       </div>
     </div>
   )
