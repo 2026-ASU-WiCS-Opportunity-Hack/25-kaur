@@ -87,7 +87,7 @@ export default function CalendarPage() {
     appointmentsThisMonth.forEach((a) => {
       if (a.date.startsWith(prefix)) map.set(a.date, (map.get(a.date) ?? 0) + 1)
     })
-    return [...map.entries()].sort((a, b) => b[1] - a[1]).slice(0, 5)
+    return Array.from(map.entries()).sort((a, b) => b[1] - a[1]).slice(0, 5)
   }, [appointmentsThisMonth, selectedDate])
 
   const availability = useMemo(() => {

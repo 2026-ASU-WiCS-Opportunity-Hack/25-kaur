@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { PageHero } from "@/components/dashboard/page-hero"
-import { Sparkles, ArrowLeft, Plus } from "lucide-react"
+import { Sparkles, ArrowLeft, Plus, FileText, Calendar, ClipboardList } from "lucide-react"
 import Link from "next/link"
 
 const MOCK_PROFILES: Record<string, {
@@ -40,6 +40,12 @@ const MOCK_PROFILES: Record<string, {
 export default function ClientProfilePage({ params }: { params: { id: string } }) {
   // In a real app we would fetch the client based on params.id from Supabase
   const client = MOCK_PROFILES[params.id] ?? MOCK_PROFILES["19402"]
+
+  const serviceCount = client.history.length
+  const lastVisit =
+    client.history.length > 0
+      ? [...client.history].sort((a, b) => b.date.localeCompare(a.date))[0]!.date
+      : "—"
 
   return (
     <div className="space-y-8">
@@ -108,6 +114,7 @@ export default function ClientProfilePage({ params }: { params: { id: string } }
             <CardHeader className="p-0 pt-6 px-6 pb-2">
               <TabsList>
                 <TabsTrigger value="history">Service History</TabsTrigger>
+                <TabsTrigger value="report">Client report</TabsTrigger>
                 <TabsTrigger value="summary">AI Handoff Brief</TabsTrigger>
               </TabsList>
             </CardHeader>
@@ -130,6 +137,64 @@ export default function ClientProfilePage({ params }: { params: { id: string } }
                   </div>
                 ))}
               </TabsContent>
+
+              <TabsContent value="report" className="space-y-4">
+                <div className="rounded-2xl border border-emerald-200/70 bg-gradient-to-br from-emerald-50/90 via-white to-teal-50/40 p-6 shadow-md shadow-emerald-900/5">
+                  <div className="mb-5 flex items-center gap-2 border-b border-emerald-100/80 pb-4">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-600/10 text-emerald-800">
+                      <FileText className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <h3 className="text-base font-semibold text-emerald-950">Client summary</h3>
+                      <p className="text-xs text-muted-foreground">
+                        Snapshot for case review and reporting — updates from service history (demo data).
+                      </p>
+                    </div>
+                  </div>
+                  <dl className="grid gap-4 sm:grid-cols-2">
+                    <div className="rounded-xl border border-white/80 bg-white/70 px-4 py-3 shadow-sm">
+                      <dt className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Full name</dt>
+                      <dd className="mt-1 font-semibold text-foreground">{client.name}</dd>
+                    </div>
+                    <div className="rounded-xl border border-white/80 bg-white/70 px-4 py-3 shadow-sm">
+                      <dt className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Client ID</dt>
+                      <dd className="mt-1 font-mono text-sm font-semibold tabular-nums text-foreground">#{client.id}</dd>
+                    </div>
+                    <div className="rounded-xl border border-white/80 bg-white/70 px-4 py-3 shadow-sm">
+                      <dt className="flex items-center gap-1.5 text-xs font-medium uppercase tracking-wide text-muted-foreground">
+                        <Calendar className="h-3.5 w-3.5" />
+                        Date of birth
+                      </dt>
+                      <dd className="mt-1 font-medium text-foreground">{client.dob}</dd>
+                    </div>
+                    <div className="rounded-xl border border-white/80 bg-white/70 px-4 py-3 shadow-sm">
+                      <dt className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Case status</dt>
+                      <dd className="mt-1">
+                        <span className="inline-flex rounded-full bg-emerald-100 px-2.5 py-0.5 text-xs font-semibold text-emerald-900">
+                          Active
+                        </span>
+                      </dd>
+                    </div>
+                    <div className="rounded-xl border border-white/80 bg-white/70 px-4 py-3 shadow-sm sm:col-span-2">
+                      <dt className="flex items-center gap-1.5 text-xs font-medium uppercase tracking-wide text-muted-foreground">
+                        <ClipboardList className="h-3.5 w-3.5" />
+                        Activity overview
+                      </dt>
+                      <dd className="mt-2 flex flex-wrap gap-4 text-sm">
+                        <span>
+                          <span className="text-muted-foreground">Services logged: </span>
+                          <span className="font-semibold tabular-nums text-foreground">{serviceCount}</span>
+                        </span>
+                        <span className="hidden sm:inline text-emerald-200">|</span>
+                        <span>
+                          <span className="text-muted-foreground">Last visit: </span>
+                          <span className="font-semibold text-foreground">{lastVisit}</span>
+                        </span>
+                      </dd>
+                    </div>
+                  </dl>
+                </div>
+              </TabsContent>
               
               <TabsContent value="summary">
                 <div className="space-y-4 rounded-2xl border border-emerald-200/60 bg-gradient-to-br from-emerald-50/70 to-white p-6">
@@ -137,7 +202,10 @@ export default function ClientProfilePage({ params }: { params: { id: string } }
                     <Sparkles className="h-5 w-5" />
                     <span>AI Generated Handoff Brief</span>
                   </div>
-                  <p className="text-sm italic text-muted-foreground">Click "Generate Handoff Summary" above to have Claude summarize this client's entire history into a 1-page briefing for a new case manager.</p>
+                  <p className="text-sm italic text-muted-foreground">
+                    Click &ldquo;Generate Handoff Summary&rdquo; above to have Claude summarize this client&apos;s entire
+                    history into a 1-page briefing for a new case manager.
+                  </p>
                 </div>
               </TabsContent>
             </CardContent>
