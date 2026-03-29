@@ -53,8 +53,8 @@ export default function LoginPage() {
         <div className="absolute inset-0 bg-gradient-to-tr from-primary/30 to-black z-10 opacity-60" />
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
            <Image
-              src="/hero-3d.png?v=3"
-              alt="3D Glowing Hands holding a Medical Cross"
+              src="/hero-3d.png?v=7"
+              alt="3D Glowing Hands holding a green plant"
               layout="fill"
               objectFit="cover"
               priority
