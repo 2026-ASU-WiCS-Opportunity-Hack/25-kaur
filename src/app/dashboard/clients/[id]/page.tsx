@@ -147,7 +147,7 @@ export default function ClientProfilePage({ params }: { params: { id: string } }
                     <div>
                       <h3 className="text-base font-semibold text-emerald-950">Client summary</h3>
                       <p className="text-xs text-muted-foreground">
-                        Snapshot for case review and reporting — updates from service history (demo data).
+                        {`Snapshot for case review and reporting — updates from service history (demo data).`}
                       </p>
                     </div>
                   </div>
@@ -203,8 +203,7 @@ export default function ClientProfilePage({ params }: { params: { id: string } }
                     <span>AI Generated Handoff Brief</span>
                   </div>
                   <p className="text-sm italic text-muted-foreground">
-                    Click &ldquo;Generate Handoff Summary&rdquo; above to have Claude summarize this client&apos;s entire
-                    history into a 1-page briefing for a new case manager.
+                    {`Click "Generate Handoff Summary" above to have Claude summarize this client's entire history into a 1-page briefing for a new case manager.`}
                   </p>
                 </div>
               </TabsContent>
