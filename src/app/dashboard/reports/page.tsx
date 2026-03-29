@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { PageHero } from "@/components/dashboard/page-hero"
 import { Sparkles, FileText, Download } from "lucide-react"
 
 export default function ReportsPage() {
@@ -18,41 +19,51 @@ export default function ReportsPage() {
   }
 
   return (
-    <div className="space-y-6 max-w-4xl mx-auto">
-      <div>
-        <h2 className="text-3xl font-bold tracking-tight text-primary flex items-center gap-2">
-          Grant Reports
-        </h2>
-        <p className="text-muted-foreground mt-1">
-          Generate comprehensive narrative reports for your funders using AI.
-        </p>
-      </div>
+    <div className="mx-auto max-w-4xl space-y-8">
+      <PageHero
+        title="Grant reports"
+        subtitle="Generate comprehensive narrative reports for your funders using AI."
+        variant="compact"
+      />
 
-      <Card>
-        <CardHeader>
+      <Card className="overflow-hidden border-emerald-100/80 bg-white/90 shadow-xl shadow-emerald-900/5">
+        <CardHeader className="border-b border-emerald-50 bg-gradient-to-r from-white to-emerald-50/50">
           <CardTitle>Q3 2023 Funder Report</CardTitle>
           <CardDescription>
             Claude will aggregate all client demographics, services logged, and outcomes for the quarter and draft a narrative based on the United Way template.
           </CardDescription>
         </CardHeader>
-        <CardContent className="space-y-6">
+        <CardContent className="space-y-6 p-6 md:p-8">
           {!reportReady ? (
-            <div className="flex flex-col items-center justify-center p-12 border-2 border-dashed rounded-lg bg-muted/20">
-              <FileText className="h-12 w-12 text-primary/40 mb-4" />
-              <Button onClick={handleGenerate} disabled={isGenerating} size="lg" className="gap-2">
-                {isGenerating ? "Aggregating Data & Drafting..." : (
+            <div className="relative flex flex-col items-center justify-center overflow-hidden rounded-2xl border-2 border-dashed border-emerald-200/80 bg-gradient-to-br from-emerald-50/80 via-white to-teal-50/50 p-12">
+              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(16,185,129,0.12),transparent_45%)]" />
+              <FileText className="relative mb-4 h-14 w-14 text-emerald-600/80" />
+              <Button
+                onClick={handleGenerate}
+                disabled={isGenerating}
+                size="lg"
+                className="relative gap-2 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 shadow-lg shadow-emerald-900/25 hover:from-emerald-500 hover:to-teal-500"
+              >
+                {isGenerating ? (
+                  <>Aggregating data…</>
+                ) : (
                   <>
-                    <Sparkles className="h-5 w-5" /> Generate Q3 Report
+                    <Sparkles className="h-5 w-5 text-amber-200" /> Generate Q3 report
                   </>
                 )}
               </Button>
+              {isGenerating ? (
+                <div className="relative mt-6 h-2 w-full max-w-sm overflow-hidden rounded-full bg-emerald-100">
+                  <div className="h-full w-1/2 animate-pulse rounded-full bg-gradient-to-r from-emerald-500 to-teal-400" />
+                </div>
+              ) : null}
             </div>
           ) : (
             <div className="space-y-4 animate-in fade-in zoom-in duration-300">
-              <div className="bg-primary/5 border border-primary/20 p-6 rounded-lg space-y-4">
+              <div className="space-y-4 rounded-2xl border border-emerald-200/60 bg-gradient-to-br from-emerald-50/60 to-white p-6 shadow-inner">
                 <div className="flex justify-between items-start mb-4">
                   <h3 className="font-bold text-lg text-primary">Executive Summary</h3>
-                  <Button variant="outline" size="sm" className="gap-2">
+                  <Button variant="outline" size="sm" className="gap-2 rounded-lg border-emerald-200 hover:bg-emerald-50">
                     <Download className="h-4 w-4" /> Export PDF
                   </Button>
                 </div>

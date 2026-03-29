@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { UserCircle2, Briefcase, HeartPulse } from "lucide-react"
 
 export default function LoginPage() {
   const router = useRouter()
@@ -27,52 +26,51 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen w-full lg:grid lg:grid-cols-2 bg-slate-50">
-      
-      {/* Visual / 3D Asset Side */}
-      <div className="hidden lg:flex flex-col justify-center items-center bg-zinc-900 relative overflow-hidden">
-        
-        {/* New Text Logo Overlay (Top Left) */}
-        <div className="absolute top-8 left-8 z-30 flex flex-col items-start gap-0.5 pt-4 pl-4 drop-shadow-sm">
-          <h1 className="text-5xl font-extrabold tracking-tight text-[#115024]">
-            AIDBRIDGE
-          </h1>
-          <p className="text-[1.05rem] font-medium tracking-wide text-[#1A6D33] opacity-90">
-            Empowering Nonprofits. Strengthening Communities.
-          </p>
+    <div className="grid min-h-screen w-full bg-white lg:grid-cols-2">
+      <div className="relative hidden overflow-hidden lg:block">
+        <Image
+          src="/login-left-exact.png"
+          alt="AidBridge welcome hero"
+          fill
+          priority
+          className="object-cover object-left"
+          sizes="50vw"
+        />
+        <div className="absolute left-6 top-4 z-10">
+          <Image
+            src="/aidbridge-wordmark.png"
+            alt="AidBridge"
+            width={290}
+            height={80}
+            className="h-auto w-[290px]"
+            priority
+          />
         </div>
-
-        <div className="absolute inset-0 bg-gradient-to-tr from-primary/30 to-black z-10 opacity-60" />
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-           <Image
-              src="/hero-3d.png?v=7"
-              alt="3D Glowing Hands holding a green plant"
-              layout="fill"
-              objectFit="cover"
-              priority
-              className="z-0 opacity-90"
-           />
-        </div>
-        <div className="z-20 p-12 mt-auto text-left w-full glass-panel border border-black/10 m-8 rounded-2xl max-w-xl self-start mb-16 shadow-2xl bg-white/40 backdrop-blur-md">
-          <h2 className="text-3xl font-bold text-black tracking-tight">Welcome to AidBridge</h2>
-          <p className="mt-4 text-gray-900 text-lg font-medium">
+        <div className="absolute bottom-8 left-6 z-10 max-w-[460px] rounded-2xl bg-white/90 px-6 py-5 shadow-lg">
+          <h2 className="text-4xl font-bold leading-tight text-black">Welcome to AidBridge</h2>
+          <p className="mt-3 text-2xl leading-snug text-black">
             Empowering nonprofits to deliver continuous care through AI-assisted case management and seamless client handoffs.
           </p>
         </div>
       </div>
 
-      {/* Auth Form Side / Right Side */}
-      <div className="flex flex-col items-center justify-between pt-16 pb-8 px-4 sm:px-6 lg:px-8 bg-slate-50 relative overflow-hidden h-screen overflow-y-auto w-full">
-        
-        {/* The Form */}
-        <div className="w-full max-w-lg space-y-8 z-10 relative mt-4">
-          <div className="text-center lg:hidden">
-            <HeartPulse className="h-12 w-12 text-primary mx-auto mb-4" />
-            <h2 className="text-3xl font-bold text-slate-900 tracking-tight">AidBridge</h2>
-          </div>
+      <div className="relative isolate flex min-h-screen flex-col justify-between overflow-hidden bg-gradient-to-br from-slate-50 via-white to-emerald-50/40 px-4 pb-8 pt-6 sm:px-8 lg:px-14">
+        <div aria-hidden className="pointer-events-none absolute -right-20 top-20 h-64 w-64 rounded-full bg-emerald-400/15 blur-3xl" />
+        <div aria-hidden className="pointer-events-none absolute bottom-40 left-0 h-48 w-48 rounded-full bg-teal-300/20 blur-3xl" />
+        <div aria-hidden className="pointer-events-none absolute bottom-0 right-1/4 h-px w-[120%] bg-gradient-to-r from-transparent via-emerald-200/50 to-transparent" />
+        <div className="lg:hidden">
+          <Image
+            src="/aidbridge-wordmark.png"
+            alt="AidBridge"
+            width={260}
+            height={74}
+            className="h-auto w-[220px] sm:w-[260px]"
+            priority
+          />
+        </div>
 
-          <Card className="glass-panel border-white/40 shadow-2xl relative overflow-visible mt-8 lg:mt-0 bg-white/80 backdrop-blur-xl">
-            
+        <div className="mx-auto flex w-full max-w-md flex-1 items-center justify-center">
+          <Card className="w-full border border-emerald-100/60 bg-white/90 shadow-xl shadow-emerald-900/5 backdrop-blur-sm transition-shadow hover:shadow-2xl">
             <CardHeader className="space-y-1 pb-6">
               <CardTitle className="text-2xl font-bold text-center">
                 {mode === "login" ? "Welcome back" : "Create an account"}
@@ -83,7 +81,6 @@ export default function LoginPage() {
             </CardHeader>
             <CardContent>
               <form onSubmit={handleSubmit} className="space-y-6">
-                
                 <div className="space-y-4">
                   {mode === "signup" && (
                     <div className="space-y-2">
@@ -99,7 +96,7 @@ export default function LoginPage() {
                     <div className="flex items-center justify-between">
                       <Label htmlFor="password">Password</Label>
                       {mode === "login" && (
-                        <a href="#" className="text-xs text-primary font-medium hover:underline">
+                        <a href="#" className="text-xs font-medium text-black hover:underline">
                           Forgot password?
                         </a>
                       )}
@@ -108,7 +105,7 @@ export default function LoginPage() {
                   </div>
                 </div>
 
-                <Button className="w-full shadow-lg shadow-primary/30 font-medium" type="submit" disabled={isLoading}>
+                <Button className="w-full bg-black text-white hover:bg-black/90" type="submit" disabled={isLoading}>
                   {isLoading 
                     ? "Authenticating..." 
                     : mode === "login" 
@@ -117,13 +114,13 @@ export default function LoginPage() {
                 </Button>
               </form>
             </CardContent>
-            <CardFooter className="flex flex-col border-t px-6 py-4 bg-slate-50/50">
+            <CardFooter className="flex flex-col border-t bg-white px-6 py-4">
               <p className="text-sm text-center text-muted-foreground mt-2">
                 {mode === "login" ? "Don't have an account?" : "Already have an account?"}{" "}
                 <button 
                   type="button" 
                   onClick={() => setMode(mode === "login" ? "signup" : "login")}
-                  className="text-primary font-semibold hover:underline"
+                  className="font-semibold text-black hover:underline"
                 >
                   {mode === "login" ? "Sign up" : "Sign in"}
                 </button>
@@ -132,18 +129,16 @@ export default function LoginPage() {
           </Card>
         </div>
 
-        {/* Bridge Logo (Bottom) */}
-        <div className="w-full max-w-[500px] mx-auto mt-8 opacity-90 drop-shadow-sm flex-shrink-0">
+        <div className="mx-auto mt-8 flex w-full max-w-md items-center justify-center">
           <Image
-            src="/bridge-logo.png"
-            alt="AidBridge Logo Illustration"
-            width={400}
-            height={300}
-            className="w-full h-auto object-contain mix-blend-multiply"
+            src="/aidbridge-logo.png"
+            alt="AidBridge logo"
+            width={320}
+            height={195}
+            className="h-auto w-[320px] max-w-full object-contain"
             priority
           />
         </div>
-
       </div>
     </div>
   )

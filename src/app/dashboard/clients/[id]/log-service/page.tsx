@@ -1,12 +1,14 @@
 "use client"
 
 import { useState } from "react"
+import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Input } from "@/components/ui/input"
-import { Mic, Square, Sparkles, Loader2, Save } from "lucide-react"
+import { PageHero } from "@/components/dashboard/page-hero"
+import { Mic, Square, Sparkles, Loader2, Save, ArrowLeft } from "lucide-react"
 
 export default function LogServicePage({ params }: { params: { id: string } }) {
   const [isRecording, setIsRecording] = useState(false)
@@ -42,20 +44,27 @@ export default function LogServicePage({ params }: { params: { id: string } }) {
   }
 
   return (
-    <div className="space-y-6 max-w-4xl mx-auto">
-      <div>
-        <h2 className="text-3xl font-bold tracking-tight text-primary flex items-center gap-2">
-           Log Client Session
-        </h2>
-        <p className="text-muted-foreground mt-1">
-          Client ID: #{params.id}
-        </p>
-      </div>
+    <div className="mx-auto max-w-4xl space-y-8">
+      <PageHero
+        title="Log client session"
+        subtitle={`Voice or manual notes · Client ID #${params.id}`}
+        variant="compact"
+        actions={
+          <Link href={`/dashboard/clients/${params.id}`}>
+            <Button
+              variant="secondary"
+              size="sm"
+              className="gap-2 rounded-xl border-white/20 bg-white/10 text-white hover:bg-white/20"
+            >
+              <ArrowLeft className="h-4 w-4" />
+              Profile
+            </Button>
+          </Link>
+        }
+      />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        
-        {/* Left Side: Voice Input */}
-        <Card className="border-t-4 border-t-primary">
+      <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+        <Card className="overflow-hidden border-emerald-100/80 border-t-4 border-t-emerald-600 bg-white/90 shadow-xl shadow-emerald-900/5">
           <CardHeader>
             <CardTitle className="flex items-center justify-between">
               <span>Voice-to-Notes</span>
@@ -66,11 +75,12 @@ export default function LogServicePage({ params }: { params: { id: string } }) {
           <CardContent className="space-y-6 flex flex-col items-center pt-8 pb-12">
             
             <button
+              type="button"
               onClick={handleRecordToggle}
-              className={`relative flex items-center justify-center h-24 w-24 rounded-full transition-all duration-300 ${
-                isRecording 
-                  ? 'bg-red-100 text-red-600 animate-pulse ring-4 ring-red-100 dark:bg-red-900/40' 
-                  : 'bg-primary/10 text-primary hover:bg-primary/20'
+              className={`relative flex h-28 w-28 items-center justify-center rounded-full transition-all duration-300 ${
+                isRecording
+                  ? "animate-pulse bg-red-100 text-red-600 ring-4 ring-red-200/80 dark:bg-red-900/40"
+                  : "bg-gradient-to-br from-emerald-100 to-teal-100 text-emerald-800 shadow-inner hover:scale-105 hover:shadow-lg"
               }`}
             >
               {isRecording ? <Square className="h-10 w-10 fill-current" /> : <Mic className="h-10 w-10" />}
@@ -89,7 +99,11 @@ export default function LogServicePage({ params }: { params: { id: string } }) {
         </Card>
 
         {/* Right Side: Structured Data Draft */}
-        <Card className={`transition-all duration-500 ${transcriptData ? 'border-primary ring-2 ring-primary/20 bg-primary/5' : ''}`}>
+        <Card
+          className={`transition-all duration-500 ${
+            transcriptData ? "border-emerald-200 ring-2 ring-emerald-200/40 bg-gradient-to-br from-emerald-50/60 to-white shadow-lg" : "border-slate-100"
+          }`}
+        >
           <CardHeader>
             <CardTitle>Session Review</CardTitle>
             <CardDescription>Review and edit structured notes before saving.</CardDescription>
