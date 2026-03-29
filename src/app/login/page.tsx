@@ -9,7 +9,6 @@ import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { HeartPulse, UserCircle2, Briefcase } from "lucide-react"
-import { Globe } from "@/components/ui/globe"
 
 export default function LoginPage() {
   const router = useRouter()
@@ -40,23 +39,32 @@ export default function LoginPage() {
       
       {/* Visual / 3D Asset Side */}
       <div className="hidden lg:flex flex-col justify-center items-center bg-zinc-900 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-tr from-primary/30 to-black z-10 opacity-60" />
+        
+        {/* New Text Logo Overlay (Top Left) */}
+        <div className="absolute top-8 left-8 z-30 flex flex-col items-start gap-0.5 pt-4 pl-4 drop-shadow-sm">
+          <h1 className="text-5xl font-extrabold tracking-tight text-[#115024]">
+            AIDBRIDGE
+          </h1>
+          <p className="text-[1.05rem] font-medium tracking-wide text-[#1A6D33] opacity-90">
+            Empowering Nonprofits. Strengthening Communities.
+          </p>
+        </div>
+
+        <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent z-10 opacity-30 pointer-events-none" />
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
            <Image
-              src="/hero-3d.png?v=3"
-              alt="3D Glowing Hands holding a Medical Cross"
+              src="/hero-3d.png?v=5"
+              alt="3D Glowing Hands holding a green plant"
               layout="fill"
               objectFit="cover"
               priority
-              className="z-0 opacity-90"
+              className="z-0 opacity-100"
            />
         </div>
-        <div className="z-20 p-12 mt-auto text-left w-full glass-panel border border-white/20 m-8 rounded-2xl max-w-xl self-start mb-16 shadow-2xl">
-          <HeartPulse className="h-10 w-10 text-primary mb-4 drop-shadow-md" />
-          <h2 className="text-3xl font-bold text-white tracking-tight">Welcome to AidBridge</h2>
-          <p className="mt-4 text-gray-300 text-lg">
-            Empowering nonprofits to deliver continuous care through AI-assisted case management and seamless client handoffs.
-          </p>
+        
+        {/* Text Overlay Box (Disabled to highlight new top-left logo, or kept minimal) */}
+        <div className="z-20 p-12 mt-auto text-left w-full glass-panel border border-white/20 m-8 rounded-2xl max-w-xl self-start mb-16 shadow-2xl bg-white/40 backdrop-blur-md hidden">
+          {/* This earlier block is hidden so the pure image and new top-left logo take focus */}
         </div>
       </div>
 
@@ -142,12 +150,6 @@ export default function LoginPage() {
             </CardFooter>
           </Card>
         </div>
-        
-        {/* Interactive Neon Globe (Bottom) */}
-        <div className="w-full max-w-[400px] aspect-square flex items-center justify-center pointer-events-auto z-10 opacity-90 drop-shadow-[0_0_20px_rgba(0,100,255,0.2)]">
-          <Globe />
-        </div>
-        
       </div>
     </div>
   )
