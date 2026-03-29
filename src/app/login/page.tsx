@@ -153,7 +153,7 @@ export default function LoginPage() {
         </div>
 
         {/* Bridge Logo (Bottom) */}
-        <div className="w-full max-w-[350px] mx-auto mt-8 opacity-90 drop-shadow-sm flex-shrink-0">
+        <div className="w-full max-w-[500px] mx-auto mt-8 opacity-90 drop-shadow-sm flex-shrink-0">
           <Image
             src="/bridge-logo.png"
             alt="AidBridge Logo Illustration"
